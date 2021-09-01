@@ -13,3 +13,13 @@ npm install
 
 - Rename `.env.example` to `.env`
 - Set value in .env file with your configuration needed. For development purpose, set NODE_ENV to development
+
+```bash
+npm start
+```
+
+### To run test
+
+```bash
+npm run test
+```
