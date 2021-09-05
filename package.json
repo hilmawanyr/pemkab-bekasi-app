@@ -10,10 +10,15 @@
   "author": "hilmawanyr",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-redis": "^6.0.0",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "helmet": "^4.6.0",
     "mysql2": "^2.3.0",
+    "redis": "^3.1.2",
     "sequelize": "^6.6.5",
     "winston": "^3.3.3"
   },
