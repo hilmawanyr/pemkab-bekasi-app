@@ -3,6 +3,7 @@ document.querySelectorAll('.rm-pic').forEach(btn => {
     btn.addEventListener('click', function() {
         let user = this.getAttribute('data-id');
         let project = document.getElementById('pId').value;
+        let code = document.getElementById('pCode').value;
         let payload = { user, project }
 
         swal({
@@ -25,7 +26,7 @@ document.querySelectorAll('.rm-pic').forEach(btn => {
                                 icon: "success",
                             })
                             .then(_ => {
-                                location.href = '/project/' + project + '/pic';
+                                location.href = '/project/' + code + '/pic';
                             });
                         }
                         if (res.status === 12) {

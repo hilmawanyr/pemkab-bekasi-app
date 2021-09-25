@@ -183,24 +183,24 @@ document.getElementById('rm-project-btn').addEventListener('click', () => {
 });
 
 // load issues
-document.addEventListener('DOMContentLoaded', function () {
-    let project = document.getElementById('pId').value;
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', '/issue/' + project);
-    xhr.onload = async function () {
-        if (this.readyState === xhr.DONE) {
-            let res = JSON.parse(xhr.response);
-            if (res.status === 1) {
-                if (res.data.length === 0) {
-                    document.getElementById('content-issue').innerHTML = '<h5><i>No data found</i></h5>';
-                } else {
-                    await setIssuePanel(res.data);
-                }
-            }
-        }
-    }
-    xhr.send();
-});
+// document.addEventListener('DOMContentLoaded', function () {
+//     let project = document.getElementById('pId').value;
+//     let xhr = new XMLHttpRequest();
+//     xhr.open('GET', '/issue/' + project);
+//     xhr.onload = async function () {
+//         if (this.readyState === xhr.DONE) {
+//             let res = JSON.parse(xhr.response);
+//             if (res.status === 1) {
+//                 if (res.data.length === 0) {
+//                     document.getElementById('content-issue').innerHTML = '<h5><i>No data found</i></h5>';
+//                 } else {
+//                     await setIssuePanel(res.data);
+//                 }
+//             }
+//         }
+//     }
+//     xhr.send();
+// });
 
 async function setIssuePanel(data) {
     let contentIssue = document.getElementById('content-issue');

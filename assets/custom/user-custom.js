@@ -63,7 +63,7 @@ document.querySelectorAll('.delete-btn').forEach(el => {
 
 document.querySelectorAll('.update-btn').forEach(el => {
     el.addEventListener('click', function (e) {
-        document.getElementById('modaltitle').textContent = 'Update user';
+        document.getElementById('modaltitle').textContent = 'Ubah Pengguna';
         document.getElementById('user-form').setAttribute('action', '/user/update');
         document.getElementById('username').setAttribute('readonly', true);
         let xhr = new XMLHttpRequest();
@@ -89,7 +89,7 @@ document.querySelectorAll('.update-btn').forEach(el => {
 });
 
 document.getElementById('btn-create').addEventListener('click', e => {
-    document.getElementById('modaltitle').textContent = 'Create user';
+    document.getElementById('modaltitle').textContent = 'Tambah Pengguna';
     document.getElementById('user-form').setAttribute('action', '/user');
     document.getElementById('user-form').reset();
     document.getElementById('username').removeAttribute('readonly');

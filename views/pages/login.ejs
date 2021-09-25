@@ -31,7 +31,7 @@
                 <a href="/auth" class="h1"><b>PEMKAB</b> LITBANG</a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">Sign in untuk memulai sesi Anda</p>
 
                 <form action="/auth" method="post">
                     <div class="input-group mb-3">
@@ -58,7 +58,7 @@
                 </form>
 
                 <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
+                    <a href="#forget-pass-modal" data-toggle="modal">Lupa password</a>
                 </p>
             </div>
             <!-- /.card-body -->
@@ -68,12 +68,49 @@
     <p class="mt-3">&copy; Pemerintah Kabupaten Bekasi - 2021</p>
     <!-- /.login-box -->
 
+    <div class="modal fade" id="forget-pass-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modaltitle">Forget password</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form class="form-horizontal" id="recov-form" action="/auth/recovery_pass" method="post">
+                    <div class="modal-body">
+                        <div class="alert alert-danger alert-dismissible" style="display: none;" id="err-alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <p id="error-msg"></p>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="inputEmail3" class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="enter your email" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" id="btn-send" class="btn btn-primary">Send forget password link</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- jQuery -->
     <script src="/bootstrap/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="/bootstrap/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/bootstrap/dist/js/adminlte.min.js"></script>
+    <!-- Sweetalert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- custom -->
+    <script src="/custom/recovpass-custom.js"></script>
 </body>
 
 </html>
