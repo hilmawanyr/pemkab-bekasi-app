@@ -2,8 +2,11 @@
 
 ## Specification
 
+Before use the application, make sure you have installed these tools
+
 - Lang: javascript with nodejs v14.16.0
 - DB: MySql 8
+- Session store: Redis
 
 ## Usage
 
