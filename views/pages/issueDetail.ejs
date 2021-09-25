@@ -1,0 +1,81 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h5 class="m-0">Projek: <%= issues.project_name %></h5>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/project">Projek</a></li>
+                        <li class="breadcrumb-item"><a href="/project/<%= issues.project_id %> "><%= issues.project_name %> </a></li>
+                        <li class="breadcrumb-item active"><%= issues.title %></li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-list"></i> <%= template.pageName %>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <dl class="row">
+                                <dt class="col-sm-2">Judul</dt>
+                                <dd class="col-sm-10"><%= issues.title %></dd>
+                                <dt class="col-sm-2">Deskripsi</dt>
+                                <dd class="col-sm-10"><%= issues.description %> </dd>
+                                <dt class="col-sm-2">Latitude</dt>
+                                <dd class="col-sm-10"><%= issues.latitude %> </dd>
+                                <dt class="col-sm-2">Longitude</dt>
+                                <dd class="col-sm-10"><%= issues.longitude %> </dd>
+                                <dt class="col-sm-2">Dibuat oleh</dt>
+                                <dd class="col-sm-10"><%= issues.username %> </dd>
+                            </dl>
+                            <div class="row mt-4">
+                                <% let no = 1; attachments.forEach(attachment => { %>
+                                    <div class="col-sm-2">
+                                        <a href="#modal-issue-detail" class="image-gallery" data-path="/upload<%= attachment.original_source %>" data-toggle="modal">
+                                            <img src="/upload<%= attachment.original_source %> " style="width: 100%; height: 150px; object-fit: cover;" />
+                                        </a>
+                                    </div>
+                                <% no++; }); %> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-issue-detail">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="issue-modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="" id="detail-img" style="width: 100%; height: 480px; object-fit: cover;" alt="">
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/custom/issue-custom.js"></script>

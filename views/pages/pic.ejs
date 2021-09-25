@@ -1,0 +1,119 @@
+<style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #0959f0;
+        border: 1px solid #0630d5;
+    }
+
+    .select2-selection__choice__remove {
+        color: #ffff !important;
+    }
+</style>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">
+                        Project: <%= data.projectName %>
+                    </h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/project">Project</a></li>
+                        <li class="breadcrumb-item"><a href="/project/<%= data.projectId %>">Project <%= data.projectName %></a></li>
+                        <li class="breadcrumb-item active">Kelola Anggota</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <button class="btn btn-sm btn-success" id="btn-create-project" data-toggle="modal"
+                                data-target="#add-member-modal"><i class="fa fa-plus"></i> Tambah Anggota</button>
+                                <small class="text-muted"></small>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example" class="table table-stripped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th style="text-align: center;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% let no=1; data.members.forEach(user=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= no %>
+                                            </td>
+                                            <td>
+                                                <%= user.username %>
+                                            </td>
+                                            <td>
+                                                <%= user.email %>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <a class="btn btn-info btn-sm rm-pic" data-toggle="tooltip" title="remove" data-id="<%= user.id %>" href="javascript:;">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <% no++; }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="add-member-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modaltitle">Assign PIC</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form-horizontal" id="project-form" action="/project/assign_user" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Select PIC</label>
+                        <select class="select2" multiple="multiple" name="users" data-placeholder="Select PIC"
+                            style="width: 100%;">
+                            <% data.users.forEach(user=> { %>
+                                <option value="<%= user.id %>">
+                                    <%= user.username %>
+                                </option>
+                                <% }) %>
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" name="pId" id="pId" value="<%= data.projectId %>">
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/custom/assign-pic-custom.js"></script>

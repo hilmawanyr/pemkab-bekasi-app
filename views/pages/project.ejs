@@ -1,0 +1,110 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">
+                        <%= template.pageName %>
+                    </h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Project</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <button class="btn btn-sm btn-success" id="btn-create-project" data-toggle="modal"
+                                data-target="#project-modal"><i class="fa fa-plus"></i> Create project</button>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example" class="table table-stripped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Last Update</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% let no=1; projects.forEach(user=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= no %>
+                                            </td>
+                                            <td>
+                                                <%= user.dataValues.name %>
+                                            </td>
+                                            <td>
+                                                <%= user.dataValues.description.length > 60 ? user.dataValues.description.substring(0, 60) + '...' : user.dataValues.description %>
+                                            </td>
+                                            <td>
+                                                <%= user.dataValues.updated_at %>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <a class="btn btn-info btn-sm" data-toggle="tooltip" title="detail" href="<%= '/project/' + user.dataValues.id %>">
+                                                    <i class="fa fa-list"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <% no++; }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="project-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modaltitle">Create Project</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form-horizontal" id="project-form" action="/project" method="post">
+                <div class="modal-body">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Project name" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-2 col-form-label">Description</label>
+                            <div class="col-sm-10">
+                                <textarea name="description" id="description" class="form-control" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

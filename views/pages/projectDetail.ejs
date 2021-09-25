@@ -1,0 +1,163 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">
+                        <%= template.pageName %>
+                    </h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/project">Project</a></li>
+                        <li class="breadcrumb-item active"><%= data.serial.project_name %> </li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 col-md-4">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h5 class="card-title m-0"><i class="fa fa-list"></i> Detil Projek</button></h5>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputBorder">Nama <a href="javascript:;" id="edit-project-name"><i class="fa fa-edit fa-xs"></i></a></label>
+                                <div class="col-xs-12" id="field-name">
+                                    <span id="name-area"><%= data.serial.project_name %></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputBorder">Deskripsi <a href="javascript:;" id="edit-project-desc"><i class="fa fa-edit fa-xs"></i></a></label>
+                                <div class="col-xs-12">
+                                    <span id="desc-area">
+                                        <%= data.serial.description %>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputBorder">Tanggal Dibuat</label>
+                                <div class="col-xs-12"><%= data.createDate %> </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" name="pId" id="pId" value="<%= data.id %>">
+                                <label for="exampleInputBorder">
+                                    Anggota 
+                                    <a href="/project/<%= data.id %>/pic" data-toggle="tooltip" title="kelola anggota" id="edit-project-pic"><i class="fa fa-edit fa-xs"></i></a>
+                                </label>
+                            </div>
+                            <button class="btn btn-block btn-danger" id="rm-project-btn"><i class="fa fa-trash"> Hapus Projek</i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12 col-md-8">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h5 class="card-title m-0"><i class="fa fa-paperclip"></i> Permasalahan</h5>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example" class="table table-stripped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Judul</th>
+                                        <th style="text-align: center;">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% let no=1; data.issues.forEach(issue=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= no %>
+                                            </td>
+                                            <td>
+                                                <%= issue.title %>
+                                            </td>
+                                            <td style="text-align: center;">
+                                                <a class="btn btn-info btn-sm" data-toggle="tooltip" title="detail"
+                                                    href="<%= '/issue/' + issue.id + '/detail' %>">
+                                                    <i class="fa fa-list"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <% no++; }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="add-member-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modaltitle">Assign PIC</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form class="form-horizontal" id="project-form" action="/project/assign_user" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Select PIC</label>
+                        <select class="select2" multiple="multiple" name="users" data-placeholder="Select PIC" style="width: 100%;">
+                            <% data.users.forEach(user => { %>
+                                <option value="<%= user.id %>"><%= user.username %> </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" name="pId" id="pId" value="<%= data.id %>">
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-issue-detail">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="issue-modal-title"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="" id="detail-img" style="width: 100%; height: 480px; object-fit: cover;" alt="">
+                <h5 style="margin-top: 10px;">Deskripsi</h5>
+                <p id="detail-desc">
+                    
+                </p>
+                <ul class="list-group list-group-unbordered mb-3" style="list-style-type: none;">
+                    <li class="list-group-item">Reporter <b class="float-right" id="detail-pic"></b></li>
+                    <li class="list-group-item">Lat <b class="float-right" id="detail-lat"></b></li>
+                    <li class="list-group-item">Long <b class="float-right" id="detail-long"></b></li>
+                </ul>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/custom/project-custom.js"></script>

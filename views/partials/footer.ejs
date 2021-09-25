@@ -34,9 +34,25 @@
 <script src="/bootstrap/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- Sweetalert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- Toastr -->
+<script src="/bootstrap/plugins/toastr/toastr.min.js"></script>
+<!-- Select2 -->
+<script src="/bootstrap/plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="/bootstrap/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <!-- Custom -->
 <script src="/custom/dataTable.js"></script>
-<script src="/custom/user-custom.js"></script>
+<script>
+    $(function () {
+        $('.select2').select2();
+        $("input[data-bootstrap-switch]").each(function () {
+            $(this).bootstrapSwitch({
+                onText: 'Aktif',
+                offText: 'Non aktif'
+            });
+        })
+    });
+</script>
 </body>
 
 </html>

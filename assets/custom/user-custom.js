@@ -1,35 +1,3 @@
-document.querySelectorAll('.ban-btn').forEach(el => {
-    el.addEventListener('click', function (e) {
-        swal({
-            title: "Nonaktifkan pengguna?",
-            text: "Pengguna tidak akan bisa menggunakan aplikasi setelah dinonaktifkan",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willBan) => {
-            if (willBan) {
-                let xhr = new XMLHttpRequest();
-                xhr.open('PUT', '/user/' + this.getAttribute('data-id') + '/status/suspend');
-                xhr.onload = function () {
-                    if (xhr.readyState === this.DONE && xhr.status === 200) {
-                        let res = JSON.parse(xhr.response);
-                        if (res.status === 1) {
-                            swal("Pengguna berhasil di-suspend!", {
-                                icon: "success",
-                            })
-                            .then(_ => {
-                                location.href = '/user'
-                            });
-                        }
-                    }
-                }
-                xhr.send();
-            }
-        });
-    });
-});
-
 document.querySelectorAll('.activate-btn').forEach(el => {
     el.addEventListener('click', function (e) {
         swal({
@@ -104,6 +72,11 @@ document.querySelectorAll('.update-btn').forEach(el => {
             if (xhr.readyState === this.DONE && xhr.status === 200) {
                 let res = JSON.parse(xhr.response);
                 if (res.status === 1) {
+                    if (res.data[0].is_ban === 0) {
+                        $('#status').bootstrapSwitch('state', true);
+                    } else {
+                        $('#status').bootstrapSwitch('state', false);
+                    }
                     document.getElementById('username').value = res.data[0].username;
                     document.getElementById('update-username').value = res.data[0].username;
                     document.getElementById('email').value = res.data[0].email;
@@ -120,4 +93,5 @@ document.getElementById('btn-create').addEventListener('click', e => {
     document.getElementById('user-form').setAttribute('action', '/user');
     document.getElementById('user-form').reset();
     document.getElementById('username').removeAttribute('readonly');
+    $('#status').bootstrapSwitch('state', false);
 });
