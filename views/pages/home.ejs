@@ -20,53 +20,47 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-sm-6 col-12">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-info"><i class="fas fa-cubes"></i></span>
-                
-                        <div class="info-box-content">
-                            <span class="info-box-text">Total Projek</span>
-                            <span class="info-box-number"><%= data.totProjects %> </span>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <a href="/project" style="color: black;">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fas fa-cubes"></i></span>
+                    
+                            <div class="info-box-content">
+                                <span class="info-box-text">Total Projek</span>
+                                <span class="info-box-number"><%= data.totProjects %> </span>
+                            </div>
+                            <!-- /.info-box-content -->
                         </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
+                        <!-- /.info-box -->
+                    </a>
                 </div>
-                <div class="col-md-6 col-sm-6 col-12">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-info"><i class="fas fa-exclamation-triangle"></i></span>
-                
-                        <div class="info-box-content">
-                            <span class="info-box-text">Total Permasalahan</span>
-                            <span class="info-box-number"><%= data.totIssues %></span>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <a href="/user" style="color: black;">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="far fa-user"></i></span>
+                    
+                            <div class="info-box-content">
+                                <span class="info-box-text">Total Pengguna Aktif</span>
+                                <span class="info-box-number"><%= data.actUsers %></span>
+                            </div>
+                            <!-- /.info-box-content -->
                         </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
+                        <!-- /.info-box -->
+                    </a>
                 </div>
-                <div class="col-md-6 col-sm-6 col-12">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-info"><i class="far fa-user"></i></span>
-                
-                        <div class="info-box-content">
-                            <span class="info-box-text">Total Pengguna Aktif</span>
-                            <span class="info-box-number"><%= data.actUsers %></span>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <a href="/user" style="color: black;">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-info"><i class="fas fa-user-times"></i></span>
+                    
+                            <div class="info-box-content">
+                                <span class="info-box-text">Total Pengguna Non Aktif</span>
+                                <span class="info-box-number"><%= data.inactUsers %></span>
+                            </div>
+                            <!-- /.info-box-content -->
                         </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <div class="col-md-6 col-sm-6 col-12">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-info"><i class="fas fa-user-times"></i></span>
-                
-                        <div class="info-box-content">
-                            <span class="info-box-text">Total Pengguna Non Aktif</span>
-                            <span class="info-box-number"><%= data.inactUsers %></span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
+                        <!-- /.info-box -->
+                    </a>
                 </div>
             </div>
             <!-- /.row -->
